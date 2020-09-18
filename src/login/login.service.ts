@@ -1,7 +1,6 @@
-import { Inject, Injectable } from "@nestjs/common";
+import { HttpException, Inject, Injectable } from "@nestjs/common";
 import User from "../db/entitys/User.entity";
 import { Repository } from "typeorm";
-import { loginErr } from "./utile_login";
 
 // @ts-ignore
 const svgCaptcha = require("svg-captcha");
@@ -18,15 +17,15 @@ export class LoginService {
     });
   }
 
-  async lgoinWithCode(name: string, password: string, code: string): Promise<loginErr> {
+  async lgoinWithCode(name: string, password: string, code: string): Promise<HttpException> {
     this.checkUserInfo(name, password);
     const _user = await this.user_db.findOne({ where: { name } });
-    if (_user) return new loginErr(0, "登陆成功");
-    else return new loginErr(1, "登陆失败");
+    if (_user) return new HttpException("登陆成功", 0);
+    else return new HttpException("登陆失败", 1);
   }
 
   checkUserInfo(name: string, password: string) {
-    if (!name) return new loginErr(1, "姓名不能为空");
-    if (!password) return new loginErr(1, "密码不能为空");
+    if (!name) return new HttpException("姓名不能为空", 1);
+    if (!password) return new HttpException("密码不能为空", 1);
   }
 }

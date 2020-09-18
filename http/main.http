@@ -1,3 +1,14 @@
+POST http://localhost:{{port}}/article/createArticle
+Content-Type: application/json
+
+{
+  "title": "test",
+  "tag": "testTag",
+  "content": "asdfasdfasdfasdfasdfasdaf",
+  "author": "fff"
+}
+
+###
 POST http://localhost:{{port}}/user/modifyUser?name=fff
 Content-Type: application/json
 
@@ -11,17 +22,12 @@ GET http://localhost:{{port}}/user/userInfo?name=aaa
 Accept: application/json
 
 ###
-###
-GET http://localhost:{{port}}/login/userInfo
-Accept: application/json
-
-###
 
 POST http://localhost:{{port}}/login/loginWithCode
 Content-Type: application/json
 
 {
-  "name": "aaa",
+  "name": "fff",
   "password": "bbb",
   "code": "ccc"
 }

@@ -8,7 +8,8 @@ export default class Article extends BaseEntity {
   @Column() tag: string;
   @JoinColumn()
   @OneToOne(type => User) author: User;
+  @Column("text") content: string;
   @Column() lastModified: string;//最后修改时间
-  @Column({ nullable: true }) zan: number;//赞
-  @Column({ nullable: true }) tread: number;//踩
+  @Column({ default: 0 }) zan: number;//赞
+  @Column({ default: 0 }) tread: number;//踩
 }
