@@ -1,0 +1,23 @@
+###
+GET http://localhost:{{port}}/login/userInfo
+Accept: application/json
+
+###
+
+POST http://localhost:{{port}}/login/loginWithCode
+Content-Type: application/json
+
+{
+  "name": "aaa",
+  "password": "bbb",
+  "code": "ccc"
+}
+
+###
+
+###
+GET http://localhost:{{port}}/login/getcode
+Accept: application/json
+
+###
+

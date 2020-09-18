@@ -10,15 +10,15 @@ import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
 export default class User {
   @PrimaryGeneratedColumn() private readonly id: number;
   @Column() name: string;//姓名
-  @Column("int") age: number;//年龄
-  @Column() sex: string;//性别
-  @Column() email: string;//邮箱
-  @Column() mobile: string;//手机号
+  @Column({ nullable: true, type: "int" }) age: number;//年龄
+  @Column({ nullable: true }) sex: string;//性别
+  @Column({ nullable: true }) email: string;//邮箱
+  @Column({ nullable: true }) mobile: string;//手机号
   @Column() password: string;//密码
-  @Column() avatar_url: string;//头像url
-  @Column() province: string;//省
-  @Column() city: string;//城市
-  @Column() job_name: string;//职业名称
-  @Column("int") notification_unread: number;//未读系统通知
-  @Column("int") inbox_unread: number;//未读用户通知
+  @Column({ nullable: true }) avatar_url: string;//头像url
+  @Column({ nullable: true }) province: string;//省
+  @Column({ nullable: true }) city: string;//城市
+  @Column({ nullable: true }) job_name: string;//职业名称
+  @Column({ nullable: true, type: "int" }) notification_unread: number;//未读系统通知
+  @Column({ nullable: true, type: "int" }) inbox_unread: number;//未读用户通知
 }
