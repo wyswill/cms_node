@@ -29,8 +29,4 @@ export class LoginService {
     if (!name) return new loginErr(1, "姓名不能为空");
     if (!password) return new loginErr(1, "密码不能为空");
   }
-
-  async getUserinfo() {
-    return await this.user_db.find();
-  }
 }

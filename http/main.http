@@ -1,3 +1,16 @@
+POST http://localhost:{{port}}/user/modifyUser?name=fff
+Content-Type: application/json
+
+{
+  "name": "fff",
+  "age": 12
+}
+
+###
+GET http://localhost:{{port}}/user/userInfo?name=aaa
+Accept: application/json
+
+###
 ###
 GET http://localhost:{{port}}/login/userInfo
 Accept: application/json

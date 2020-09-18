@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Request } from "@nestjs/common";
+import { Body, Controller, Get, Post, Request, Session } from "@nestjs/common";
 import { LoginService } from "./login.service";
 
 
@@ -8,9 +8,9 @@ export class LoginController {
   }
 
   @Get("/getCode")
-  getCode(@Request() req) {
+  getCode(@Session() session) {
     const codes = this.loginService.getCode();
-    req.session.code = codes.text;
+    session.code = codes.text;
     return codes;
   }
 
@@ -19,11 +19,6 @@ export class LoginController {
     const res = await this.loginService.lgoinWithCode(body.name, body.password, body.code);
     console.log(res);
     return res;
-  }
-
-  @Get("/userInfo")
-  async getUserinfo() {
-    return await this.loginService.getUserinfo();
   }
 
 }

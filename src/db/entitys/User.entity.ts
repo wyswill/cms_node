@@ -1,4 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import BaseEntity from "../Base.entity";
 
 /*
  * @LastEditors: wyswill
@@ -7,14 +8,13 @@ import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
  * @LastEditTime: 2020-09-08 19:13:35
  */
 @Entity()
-export default class User {
-  @PrimaryGeneratedColumn() private readonly id: number;
+export default class User extends BaseEntity {
   @Column() name: string;//姓名
+  @Column() password: string;//密码
   @Column({ nullable: true, type: "int" }) age: number;//年龄
   @Column({ nullable: true }) sex: string;//性别
   @Column({ nullable: true }) email: string;//邮箱
   @Column({ nullable: true }) mobile: string;//手机号
-  @Column() password: string;//密码
   @Column({ nullable: true }) avatar_url: string;//头像url
   @Column({ nullable: true }) province: string;//省
   @Column({ nullable: true }) city: string;//城市
