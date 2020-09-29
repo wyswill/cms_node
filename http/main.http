@@ -1,8 +1,7 @@
 @port=4000
-
-GET http://localhost:{{port}}/article/getArticle?currentPage=1&articleNumber=10
+#########
+GET http://localhost:{{port}}/article/getArticle?currentPage=3&articleNumber=10
 Content-Type: application/json
-
 #######
 POST http://localhost:{{port}}/article/createArticle
 Content-Type: application/json
