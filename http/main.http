@@ -1,3 +1,12 @@
+POST http://localhost:{{port}}/article/commentArticle
+Content-Type: application/json
+
+{
+
+
+}
+
+###
 @port=4000
 #########
 GET http://localhost:{{port}}/article/getArticle?currentPage=3&articleNumber=10

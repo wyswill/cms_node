@@ -26,4 +26,8 @@ export class ArticleService {
       take: config.articleNumber,
     });
   }
+
+  async postComment(content: CommentArticleBody) {
+    console.log(content);
+  }
 }

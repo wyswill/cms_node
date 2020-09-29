@@ -8,3 +8,10 @@ declare type GetArticleParme = {
   currentPage: number;
   articleNumber: number;
 };
+
+declare type CommentArticleBody = {
+  articleId: number;
+  commentContent: string;
+  userId: number;
+  lastEditedTime?: number;
+}
