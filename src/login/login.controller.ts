@@ -16,9 +16,7 @@ export class LoginController {
 
   @Post("/loginWithCode")
   async loginWithCode(@Body() body: loginBody) {
-    const res = await this.loginService.lgoinWithCode(body.name, body.password, body.code);
-    console.log(res);
-    return res;
+    return await this.loginService.lgoinWithCode(body.name, body.password, body.code);
   }
 
 }

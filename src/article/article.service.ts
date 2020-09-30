@@ -1,16 +1,12 @@
-/*
- * @LastEditors: wyswill
- * @Description: 文章服务
- * @Date: 2020-09-18 16:31:20
- * @LastEditTime: 2020-09-29 14:31:28
- */
 import { Inject, Injectable } from "@nestjs/common";
 import { Repository } from "typeorm";
 import Article from "src/db/entitys/Article.entity";
+import Comment from "../db/entitys/Comment.entity";
+import { GetArticleParme } from "src/dto/article";
 
 @Injectable()
 export class ArticleService {
-  constructor(@Inject("Article_db") private readonly article_db: Repository<Article>) {
+  constructor(@Inject("Article_db") private readonly article_db: Repository<Article>, @Inject("Comment_db") private readonly comment_db: Repository<Comment>) {
   }
 
   async createArticle(article: Article) {
@@ -27,7 +23,9 @@ export class ArticleService {
     });
   }
 
-  async postComment(content: CommentArticleBody) {
-    console.log(content);
+  async postComment(content: Comment) {
+    const _comments = new Comment();
+    Object.assign(_comments, content);
+    await this.comment_db.insert(_comments);
   }
 }

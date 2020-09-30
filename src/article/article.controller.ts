@@ -1,13 +1,9 @@
-/*
- * @LastEditors: wyswill
- * @Description: 文章控制器
- * @Date: 2020-09-18 16:32:00
- * @LastEditTime: 2020-09-29 11:57:03
- */
-import { Body, Controller, Get, HttpException, Param, Post, Query } from "@nestjs/common";
+import { Body, Controller, Get, HttpException, Post, Query } from "@nestjs/common";
 import { ArticleService } from "./article.service";
 import Article from "../db/entitys/Article.entity";
 import { check } from "src/util/check";
+import { GetArticleParme } from "src/dto/article";
+import Comment from "../db/entitys/Comment.entity";
 
 @Controller("article")
 export class ArticleController {
@@ -26,9 +22,8 @@ export class ArticleController {
   }
 
   @Post("/commentArticle")
-  async postComment(@Body() content: CommentArticleBody) {
-    Reflect.set(content, "lastEditedTime", new Date().getTime());
-    if (!check(content, ["articleId", "commentContent", "userId", "lastEditedTime"])) return new HttpException("参数不对", 1);
+  async postComment(@Body() content: Comment) {
+    Reflect.set(content, "lastModified", new Date().getTime());
     return await this.articleService.postComment(content);
   }
 }
