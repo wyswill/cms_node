@@ -1,13 +1,22 @@
-import { Controller, Get } from "@nestjs/common";
+import { Controller, Post, UploadedFile, UseInterceptors } from "@nestjs/common";
 import { AppService } from "./app.service";
+import { ApiBody, ApiConsumes } from "@nestjs/swagger";
+import { FileInterceptor } from "@nestjs/platform-express";
+import { FileUploadDto } from "src/dto/FileUploadDto";
 
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {
   }
 
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  @Post("/uploadFile")
+  @ApiConsumes("multipart/form-data")
+  @ApiBody({
+    description: "List of cats",
+    type: FileUploadDto,
+  })
+  @UseInterceptors(FileInterceptor("file"))
+  async uploadFile(@UploadedFile() file) {
+    return this.appService.fileHandler(file);
   }
 }

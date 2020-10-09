@@ -11,8 +11,8 @@ export class ArticleController {
   }
 
   @Post("/createArticle")
-  createArticle(@Body() article: Article) {
-    this.articleService.createArticle(article);
+  async createArticle(@Body() article: Article) {
+    await this.articleService.createArticle(article);
   }
 
   @Get("/getArticle")
