@@ -1,14 +1,19 @@
+/*
+ * @LastEditors: wyswill
+ * @Description: 文章控制器
+ * @Date: 2020-09-18 16:32:00
+ * @LastEditTime: 2020-10-09 18:10:10
+ */
 import { Body, Controller, Get, HttpException, Post, Query } from "@nestjs/common";
 import { ArticleService } from "./article.service";
 import Article from "../db/entitys/Article.entity";
 import { check } from "src/util/check";
-import { GetArticleParme } from "src/dto/article";
+import { deleteArticleDto, GetArticleParme, ModifArticleDto } from "src/dto/article";
 import Comment from "../db/entitys/Comment.entity";
 
 @Controller("article")
 export class ArticleController {
-  constructor(private readonly articleService: ArticleService) {
-  }
+  constructor(private readonly articleService: ArticleService) {}
 
   @Post("/createArticle")
   async createArticle(@Body() article: Article) {
@@ -21,9 +26,19 @@ export class ArticleController {
     return await this.articleService.getArticles(config);
   }
 
+  @Post("/modifiAritcle")
+  modifiAritcle(@Body() articleInfo: ModifArticleDto) {
+    return this.articleService.modifiAritcle(articleInfo);
+  }
+
   @Post("/commentArticle")
   async postComment(@Body() content: Comment) {
     Reflect.set(content, "lastModified", new Date().getTime());
     return await this.articleService.postComment(content);
+  }
+
+  @Post("/deleteArticle")
+  deleteArticle(@Body() articleInfo: deleteArticleDto) {
+    return this.articleService.deleteArticleById(articleInfo.id);
   }
 }
