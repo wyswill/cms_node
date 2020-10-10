@@ -13,8 +13,8 @@ async function bootstrap() {
   /** seeion end */
 
   const options = new DocumentBuilder()
-    .setTitle("houduan")
-    .setDescription("我的第一个nest 后端")
+    .setTitle("cms_api")
+    .setDescription("node_cms_api")
     .setVersion("0.0.1")
     .build();
   const document = SwaggerModule.createDocument(app, options);

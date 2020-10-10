@@ -1,3 +1,4 @@
+import { SystemModule } from "./../system/system.module";
 import { Module } from "@nestjs/common";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
@@ -7,9 +8,8 @@ import { DatabaseModule } from "../db/database.module";
 import { ArticleModule } from "../article/article.module";
 
 @Module({
-  imports: [LoginModule, UserModule, DatabaseModule, ArticleModule],
+  imports: [LoginModule, UserModule, DatabaseModule, ArticleModule, SystemModule],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {
-}
+export class AppModule {}
