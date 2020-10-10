@@ -2,10 +2,9 @@
  * @LastEditors: wyswill
  * @Description: 文件描述
  * @Date: 2020-09-18 10:43:37
- * @LastEditTime: 2020-10-10 10:04:55
+ * @LastEditTime: 2020-10-10 11:52:18
  */
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn } from "typeorm";
-import User from "./User.entity";
+import { Entity, Column } from "typeorm";
 import BaseEntity from "../Base.entity";
 import { ApiProperty } from "@nestjs/swagger";
 

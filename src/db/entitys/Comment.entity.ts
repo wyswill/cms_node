@@ -1,4 +1,10 @@
-import { Column, Entity, JoinColumn, OneToOne } from "typeorm";
+/*
+ * @LastEditors: wyswill
+ * @Description: 文件描述
+ * @Date: 2020-09-18 10:56:26
+ * @LastEditTime: 2020-10-10 11:57:00
+ */
+import { Column, Entity } from "typeorm";
 import User from "./User.entity";
 import Article from "./Article.entity";
 import BaseEntity from "../Base.entity";
