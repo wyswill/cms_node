@@ -2,13 +2,13 @@
  * @LastEditors: wyswill
  * @Description: 文章控制器
  * @Date: 2020-09-18 16:32:00
- * @LastEditTime: 2020-10-09 18:10:10
+ * @LastEditTime: 2020-10-10 10:08:52
  */
-import { Body, Controller, Get, HttpException, Post, Query } from "@nestjs/common";
+import { Body, Controller, Get, HttpException, Param, Post, Query } from "@nestjs/common";
 import { ArticleService } from "./article.service";
 import Article from "../db/entitys/Article.entity";
 import { check } from "src/util/check";
-import { deleteArticleDto, GetArticleParme, ModifArticleDto } from "src/dto/article";
+import { deleteArticleDto, GetArticleParme, ModifArticleDto, toggleZanArticleDto } from "src/dto/article";
 import Comment from "../db/entitys/Comment.entity";
 
 @Controller("article")
@@ -40,5 +40,10 @@ export class ArticleController {
   @Post("/deleteArticle")
   deleteArticle(@Body() articleInfo: deleteArticleDto) {
     return this.articleService.deleteArticleById(articleInfo.id);
+  }
+
+  @Get("/zanOrCaiArticle")
+  zanOrCaiArticle(@Query() info: toggleZanArticleDto) {
+    return this.articleService.toggleZanOrCaiArticle(info);
   }
 }

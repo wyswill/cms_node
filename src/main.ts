@@ -9,7 +9,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   /** seeion start */
-  app.use(session({ secret: "qwertyuiop~!@#$%^&*" }));
+  app.use(session({ secret: "qwertyuiop~!@#$%^&*", resave: false, saveUninitialized: true }));
   /** seeion end */
 
   const options = new DocumentBuilder()

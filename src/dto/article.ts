@@ -19,3 +19,12 @@ export class ModifArticleDto {
   @ApiProperty({ description: "新标签", default: "" })
   tag: string;
 }
+
+export class toggleZanArticleDto {
+  @ApiProperty({ description: "文章ID", default: 1 })
+  id: number;
+  @ApiProperty({ description: "赞或是取消赞", default: 1, enum: [0, 1] })
+  status: number;
+  @ApiProperty({ description: "踩或是赞", default: "zan", enum: ["zan", "cai"] })
+  type: string;
+}

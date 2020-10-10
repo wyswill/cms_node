@@ -2,7 +2,7 @@
  * @LastEditors: wyswill
  * @Description: 文件描述
  * @Date: 2020-09-18 10:43:37
- * @LastEditTime: 2020-09-29 11:21:18
+ * @LastEditTime: 2020-10-10 10:04:55
  */
 import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn } from "typeorm";
 import User from "./User.entity";
