@@ -2,17 +2,17 @@
  * @LastEditors: wyswill
  * @Description: 文章服务
  * @Date: 2020-09-18 16:31:20
- * @LastEditTime: 2020-10-10 10:08:40
+ * @LastEditTime: 2020-10-10 11:37:37
  */
 import { Inject, Injectable, HttpException } from "@nestjs/common";
 import { Repository } from "typeorm";
 import Article from "src/db/entitys/Article.entity";
 import Comment from "../db/entitys/Comment.entity";
 import { GetArticleParme, ModifArticleDto, toggleZanArticleDto } from "src/dto/article";
-
+import { SystemProvider } from "./../system/system.provider";
 @Injectable()
 export class ArticleService {
-  constructor(@Inject("Article_db") private readonly article_db: Repository<Article>, @Inject("Comment_db") private readonly comment_db: Repository<Comment>) {}
+  constructor(@Inject("Article_db") private readonly article_db: Repository<Article>, @Inject("Comment_db") private readonly comment_db: Repository<Comment>, private readonly systemWs: SystemProvider) {}
   /**
    * 创建文章
    * @param article 文章内容
@@ -54,6 +54,7 @@ export class ArticleService {
     const _comments = new Comment();
     Object.assign(_comments, content);
     await this.comment_db.insert(_comments);
+    this.systemWs.server.emit("articleNoty", "articleNoty");
   }
   /**
    * 删除帖子，同时删除评论
